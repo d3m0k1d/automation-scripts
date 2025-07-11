@@ -1,7 +1,8 @@
 #!/bin/bash
 
-    cat << 'EOF'
-    
+echo "Backup Script"
+cat << 'EOF'
+
                                /$$             /$$           /$$                
                               |__/            | $$          | $$                
   /$$$$$$$  /$$$$$$$  /$$$$$$  /$$  /$$$$$$  /$$$$$$        | $$$$$$$  /$$   /$$
@@ -23,6 +24,7 @@
  \_______/ \______/ |__/ |__/ |__/ \______/ |__/  \__/|______/ \_______/        
                                                                                 
 EOF
+echo "https://github.com/d3m0k1d/automation-scripts"
 
 mkdir -p /home/$USER/backup
 backup_name="backup_$(date +%Y-%m-%d-%H-%M-%S).tar.gz"
