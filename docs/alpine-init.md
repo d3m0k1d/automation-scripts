@@ -3,14 +3,15 @@
 This simple script is designed to help you quickly set up Alpine Linux as a server environment.
 ## Included Base Packages
 In my opnion and experience, these are the most basic packages that you need to have in your server environment.
-**nano** – simple text editor
-**vim** – advanced text editor
-**curl** – command-line tool for transferring data
-**wget** – network downloader
-**ufw** – uncomplicated firewall
-**htop** – interactive process viewer
-**gzip** – compression utility  
-**dcron**– lightweight cron daemon
+
+- **nano** – simple text editor
+- **vim** – advanced text editor
+- **curl** – command-line tool for transferring data
+- **wget** – network downloader
+- **ufw** – uncomplicated firewall
+- **htop** – interactive process viewer
+- **gzip** – compression utility  
+- **dcron**– lightweight cron daemon
 ## Tested Environment
 - **Alpine Linux version:** 3.22
 - **Container type:** LXC
