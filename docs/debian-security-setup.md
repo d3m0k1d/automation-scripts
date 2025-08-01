@@ -46,7 +46,7 @@ This script modifies and creates basic configurations for security packages. Aft
 
 Include /etc/ssh/sshd_config.d/*.conf
 
-Port 22
+Port 2222
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -160,11 +160,12 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server
 ```bash
 [sshd]
 enabled = true
-port = ssh
+port = 2222
 logpath = /var/log/auth.log
 maxretry = 2
 findtime = 600
 bantime = 1800
+backend = systemd
 ```
 3. **/etc/nftables.conf**
 ```bash
@@ -173,7 +174,7 @@ bantime = 1800
         type filter hook input priority 0; 
         policy drop;
         ct state established,related accept
-        tcp dport 22 accept
+        tcp dport 2222 accept
         iif lo accept 
         ip protocol icmp accept 
 
