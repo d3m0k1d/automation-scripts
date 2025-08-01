@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 create_user() {
     apk add shadow
     echo "Please enter the username:"

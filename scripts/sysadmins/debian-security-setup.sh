@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 check_root() {
     if [[ $EUID -ne 0 ]]; then
         echo "Script need to run with sudo"
@@ -12,12 +13,12 @@ function install_package() {
 }
 
 function setup_ssh(){
-    systemctl enable sshd
+    systemctl enable ssh
     sed -i 's/^#\?Port .*/Port 22/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
     sed -i 's/^#\?MaxAuthTries .*/MaxAuthTries 2/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitEmptyPasswords .*/PermitEmptyPasswords no/' /etc/ssh/sshd_config
-    systemctl restart sshd
+    systemctl restart ssh
     echo "SSH configured"
 }
 
