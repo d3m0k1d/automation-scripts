@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 echo "Backup Script"
 cat << 'EOF'
 
