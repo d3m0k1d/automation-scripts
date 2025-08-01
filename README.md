@@ -9,6 +9,7 @@ The repository will be supplemented and updated as necessary to ensure it remain
 ```
 ├── docs # For script documentation, dependencies, or system requirements
 │   └── alpine-init.md
+│   └── debian-security-setup.md
 ├── LICENSE
 ├── README.md
 └── scripts
