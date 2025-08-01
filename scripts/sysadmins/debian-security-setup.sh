@@ -4,7 +4,7 @@ check_root() {
         echo "Script need to run with sudo"
         exit 1
     fi 
-
+}
 function install_package() {
     apt update && apt upgrade -y
     apt install nftables fail2ban openssh-server -y
@@ -16,6 +16,7 @@ function setup_ssh(){
     sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
     sed -i 's/^#\?MaxAuthTries .*/MaxAuthTries 2/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitEmptyPasswords .*/PermitEmptyPasswords no/' /etc/ssh/sshd_config
+    systemctl restart sshd
 }
 
 function setup_fail2ban(){
@@ -32,10 +33,35 @@ bantime = 1800
 EOF
 
     systemctl restart fail2ban
-
+}
 
 function setup_nftables_rules(){
-    
+    touch /etc/nftables.conf
+    cat <<EOF > /etc/nftables.conf
+table inet filter {
+
+     chain input {
+        type filter hook input priority 0; 
+        policy drop;
+        ct state established,related accept
+        tcp dport 22 accept
+        iif lo accept 
+        ip protocol icmp accept 
+
+
+    }
+
+    chain output{
+        type filter hook output priority 0;
+        policy accept;
+
+    }
+}
+
+EOF
+sudo systemctl enable nftables
+sudo systemctl start nftables
+sudo nft -f /etc/nftables.conf
 }
 
 
