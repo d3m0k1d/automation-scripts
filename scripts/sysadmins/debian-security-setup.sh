@@ -33,6 +33,7 @@ logpath = /var/log/auth.log
 maxretry = 2
 findtime = 600
 bantime = 1800
+backend = systemd
 EOF
 
     systemctl restart fail2ban
