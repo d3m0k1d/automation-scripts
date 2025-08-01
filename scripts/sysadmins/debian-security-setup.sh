@@ -14,7 +14,7 @@ function install_package() {
 
 function setup_ssh(){
     systemctl enable ssh
-    sed -i 's/^#\?Port .*/Port 22/' /etc/ssh/sshd_config
+    sed -i 's/^#\?Port .*/Port 2222/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin no/' /etc/ssh/sshd_config
     sed -i 's/^#\?MaxAuthTries .*/MaxAuthTries 2/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitEmptyPasswords .*/PermitEmptyPasswords no/' /etc/ssh/sshd_config
@@ -28,7 +28,7 @@ function setup_fail2ban(){
     cat <<EOF > /etc/fail2ban/jail.local
 [sshd]
 enabled = true
-port = ssh
+port = 2222
 logpath = /var/log/auth.log
 maxretry = 2
 findtime = 600
@@ -49,7 +49,7 @@ table inet filter {
         type filter hook input priority 0; 
         policy drop;
         ct state established,related accept
-        tcp dport 22 accept
+        tcp dport 2222 accept
         iif lo accept 
         ip protocol icmp accept 
 
