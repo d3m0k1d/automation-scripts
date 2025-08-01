@@ -8,6 +8,7 @@ check_root() {
 function install_package() {
     apt update && apt upgrade -y
     apt install nftables fail2ban openssh-server -y
+    echo "Dependencies installed"
 }
 
 function setup_ssh(){
@@ -17,6 +18,7 @@ function setup_ssh(){
     sed -i 's/^#\?MaxAuthTries .*/MaxAuthTries 2/' /etc/ssh/sshd_config
     sed -i 's/^#\?PermitEmptyPasswords .*/PermitEmptyPasswords no/' /etc/ssh/sshd_config
     systemctl restart sshd
+    echo "SSH configured"
 }
 
 function setup_fail2ban(){
@@ -33,6 +35,7 @@ bantime = 1800
 EOF
 
     systemctl restart fail2ban
+    echo "Fail2ban configured"
 }
 
 function setup_nftables_rules(){
@@ -62,6 +65,7 @@ EOF
 sudo systemctl enable nftables
 sudo systemctl start nftables
 sudo nft -f /etc/nftables.conf
+echo "Nftables configured"
 }
 
 
@@ -92,3 +96,8 @@ EOF
 echo "https://github.com/d3m0k1d/automation-scripts"
 
 
+check_root
+install_package
+setup_ssh
+setup_fail2ban
+setup_nftables_rules
