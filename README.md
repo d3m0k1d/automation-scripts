@@ -16,6 +16,7 @@ The repository will be supplemented and updated as necessary to ensure it remain
     ├── sysadmins #Scripts to help with sysadmin routine tasks
     │   └── alpine-init.sh
     │   └── debian-security-setup.sh
+    │   └── debian-init-docker.sh
     └── tools #General-purpose tools
         └── backup.sh 
 ```
